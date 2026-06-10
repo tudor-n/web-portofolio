@@ -1,47 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 
- <head>
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nicolescu Tudor - Portofolio </title>
-  <!-- Fonts-->
-   <link rel="preconnect" href="https://fonts.googleapis.com" />
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@...
-             &family=Hanken+Grotesk:wght@400;500;600;700
-             &family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  <title>Nicolescu Tudor — Portofolio</title>
+  <meta name="description" content="Personal portfolio of Nicolescu Tudor, Full-stack Developer, with projects pulled live from GitHub." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
   <header>
     <nav class="wrap nav">
-        <div class="logo">N<span>T</span>.</div>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#projects-section">Projects</a></li>
-        </ul>
-    </nav>  
+      <div class="logo">N<span>T</span>.</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#projects-section">Projects</a></li>
+      </ul>
+    </nav>
   </header>
-  <main>
-    <section class="hero" id="about">
-        <div class="reveal d1">
-            <p class="eyebrow">Portofolio - 2026</p>
-            <h1>Nicolescu Tudor</h1>
-            <p class="role">Full-stack Developer </p>
-            <p class="bio">
-                description
-            </p>
 
-          <div class="links">
-            <a class="btn btn-primary" href="https://github.com/tudor-n"
-               target="_blank" rel="noopener">Github </a>
-            <a class="btn btn-ghost" href="#projects-section">View projects</a>
-          </div>
+  <main>
+    <section class="hero wrap" id="about">
+      <div class="reveal d1">
+        <p class="eyebrow">Portofolio — 2026</p>
+        <h1>Nicolescu Tudor</h1>
+        <p class="role">Full-stack Developer</p>
+        <p class="bio">
+          I build web applications end to end — from clean, responsive interfaces to the
+          APIs behind them. I care about readable code, thoughtful detail, and shipping
+          things that actually work.
+        </p>
+        <div class="links">
+          <a class="btn btn-primary" href="https://github.com/tudor-n" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="#projects-section">View projects</a>
         </div>
+      </div>
+      <img class="avatar reveal d2" src="https://github.com/tudor-n.png" alt="Nicolescu Tudor profile photo" width="190" height="190" />
+    </section>
+
+    <section class="wrap reveal d2" id="experience">
+      <p class="eyebrow">Where I've worked</p>
+      <h2 class="section-title">Experience</h2>
+
+      <div class="entry">
+        <div class="period">2023 — Present</div>
+        <div>
+          <h3>Front-end Developer</h3>
+          <p class="org">Company X</p>
+          <p>Built and maintained responsive user interfaces, integrated REST APIs, and
+            collaborated on component-driven design systems. (Placeholder — replace with your real role.)</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="period">2022 — 2023</div>
+        <div>
+          <h3>Web Development Intern</h3>
+          <p class="org">Company Y</p>
+          <p>Supported feature development and bug-fixing on production web apps, learning
+            modern tooling and team workflows. (Placeholder — replace with your real role.)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap reveal d3" id="education">
+      <p class="eyebrow">Academic background</p>
+      <h2 class="section-title">Education</h2>
+
+      <div class="entry">
+        <div class="period">2022 — 2026</div>
+        <div>
+          <h3>BSc in Computer Science</h3>
+          <p class="org">Faculty of Informatics, University Z</p>
+          <p>Coursework in algorithms, web technologies, databases and software engineering.
+            (Placeholder — replace with your real institution and dates.)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap reveal d4" id="projects-section">
+      <p class="eyebrow">Pulled live from GitHub</p>
+      <h2 class="section-title">Projects</h2>
+
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search projects…" aria-label="Search projects" />
+        <div id="filters"></div>
+      </div>
+
+      <p id="status"></p>
+      <div class="grid" id="projects"></div>
     </section>
   </main>
 
+  <footer>
+    <div class="wrap">
+      © 2026 Nicolescu Tudor — Built with HTML, CSS &amp; JavaScript. Projects fetched from the GitHub API.
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
 
 </html>
