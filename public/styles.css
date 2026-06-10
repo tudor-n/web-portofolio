@@ -1,36 +1,24 @@
-/* =========================================================================
-   PERSONALIZE HERE — these are CSS variables (custom properties).
-   You define a value once with --name, then reuse it anywhere with var(--name).
-   Change --accent and the entire page reskins, because every accent below
-   points back to this one value.
-   ========================================================================= */
 :root {
-  --accent:        #C8543A;   /* main accent (rust). Try #2E6E5B teal, #355E9E blue, #B5852A gold... */
-  --accent-strong: #A8442E;   /* darker accent for text links / button backgrounds (better contrast) */
+  --accent:        #C8543A;
+  --accent-strong: #A8442E;
 
-  --bg:      #F2EDE3;          /* warm paper background */
-  --surface: #FBF8F1;          /* cards / panels */
-  --ink:     #1C1B19;          /* main text (near-black, warm) */
-  --muted:   #6B665C;          /* secondary / dimmer text */
-  --line:    #E2DBCD;          /* hairline border colour */
+  --bg:      #F2EDE3;
+  --surface: #FBF8F1;
+  --ink:     #1C1B19;
+  --muted:   #6B665C;
+  --line:    #E2DBCD;
 
-  --font-display: "Fraunces", Georgia, serif;          /* if Fraunces fails to load, fall back to Georgia */
+  --font-display: "Fraunces", Georgia, serif;
   --font-body:    "Hanken Grotesk", system-ui, sans-serif;
   --font-mono:    "JetBrains Mono", ui-monospace, monospace;
 
-  --maxw: 1080px;             /* how wide the page content can get */
-  --radius: 14px;             /* corner rounding, reused on cards/inputs */
+  --maxw: 1080px;
+  --radius: 14px;
 }
 
-/* =========================================================================
-   BASE / RESET
-   ========================================================================= */
-/* box-sizing:border-box means padding & borders are counted INSIDE an element's
-   width — so a 280px card stays 280px even with padding. This one rule prevents
-   most "why is my layout wider than expected?" headaches. The * selects everything. */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }   /* anchor-link jumps glide instead of snapping */
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
@@ -38,31 +26,25 @@ body {
   background: var(--bg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  /* A faint warm glow in the top-right corner — gives depth instead of a flat fill. */
   background-image: radial-gradient(900px 500px at 80% -10%, rgba(200, 84, 58, 0.10), transparent 60%);
   background-repeat: no-repeat;
 }
 
-/* A pseudo-element (::before) is an extra "fake" element CSS draws for us.
-   Here it's a full-screen film-grain texture sitting ABOVE the page.
-   pointer-events:none lets clicks pass through it so it never blocks buttons. */
 body::before {
   content: "";
   position: fixed;
-  inset: 0;                         /* shorthand for top/right/bottom/left: 0 — covers the viewport */
+  inset: 0;
   pointer-events: none;
   z-index: 9999;
   opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-a { color: inherit; }                /* links use the surrounding text colour by default */
-img { max-width: 100%; display: block; }   /* images never overflow their container */
+a { color: inherit; }
+img { max-width: 100%; display: block; }
 
-/* Reusable centred container with a max width and side padding. */
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
-/* Small uppercase mono labels used above each section title. */
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -76,27 +58,20 @@ section { padding: 72px 0; border-top: 1px solid var(--line); }
 .section-title {
   font-family: var(--font-display);
   font-weight: 600;
-  /* clamp(MIN, PREFERRED, MAX): font scales with screen width but never below 1.8rem
-     or above 2.6rem. This is how the text stays readable on phone AND desktop. */
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   line-height: 1.05;
   margin: 10px 0 36px;
   letter-spacing: -0.01em;
 }
 
-/* =========================================================================
-   HEADER / NAV
-   ========================================================================= */
 header {
-  position: sticky;          /* stays at the top of the screen as you scroll past it */
+  position: sticky;
   top: 0;
-  z-index: 50;               /* sits above the page content */
-  backdrop-filter: blur(8px);/* frosted-glass effect: blurs whatever scrolls behind it */
-  background: rgba(242, 237, 227, 0.78);   /* semi-transparent so the blur shows */
+  z-index: 50;
+  backdrop-filter: blur(8px);
+  background: rgba(242, 237, 227, 0.78);
   border-bottom: 1px solid var(--line);
 }
-/* flex = 1-D layout. Here it puts the logo and the menu on one row,
-   pushed to opposite ends (space-between) and vertically centred. */
 .nav {
   display: flex;
   align-items: center;
@@ -104,18 +79,12 @@ header {
   height: 64px;
 }
 .nav .logo { font-family: var(--font-display); font-weight: 900; font-size: 1.25rem; letter-spacing: -0.02em; }
-.nav .logo span { color: var(--accent); }    /* tints just the second letter */
+.nav .logo span { color: var(--accent); }
 .nav ul { display: flex; gap: 28px; list-style: none; }
 .nav a { text-decoration: none; font-size: 0.92rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
 .nav a:hover { color: var(--ink); }
-/* On narrow phones, hide the menu links so the header doesn't overflow. */
 @media (max-width: 560px) { .nav ul { display: none; } }
 
-/* =========================================================================
-   HERO / PROFILE
-   ========================================================================= */
-/* grid = 2-D layout. Two columns: text takes the leftover space (1fr),
-   the avatar takes only as much as it needs (auto). */
 .hero {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -126,73 +95,64 @@ header {
 }
 .hero h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 0.98; letter-spacing: -0.02em; margin: 14px 0 18px; }
 .hero .role { font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent-strong); margin-bottom: 18px; }
-.hero p.bio { font-size: 1.08rem; color: var(--muted); max-width: 46ch; }  /* 46ch ≈ 46 characters wide — keeps lines readable */
+.hero p.bio { font-size: 1.08rem; color: var(--muted); max-width: 46ch; }
 
 .hero .links { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 0.9rem; font-weight: 600;
   padding: 11px 20px;
-  border-radius: 100px;          /* big radius = fully pill-shaped */
+  border-radius: 100px;
   text-decoration: none;
-  transition: transform 0.15s, background 0.2s, border-color 0.2s;   /* smooth hover */
+  transition: transform 0.15s, background 0.2s, border-color 0.2s;
 }
 .btn-primary { background: var(--accent-strong); color: #fff; }
-.btn-primary:hover { transform: translateY(-2px); }   /* lifts up 2px on hover */
+.btn-primary:hover { transform: translateY(-2px); }
 .btn-ghost { border: 1px solid var(--line); color: var(--ink); }
 .btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
 
-/* The avatar. Works as a styled div OR an <img> with the same class. */
 .avatar {
   width: 190px; height: 190px;
-  border-radius: 50%;            /* perfect circle */
-  object-fit: cover;             /* if it's an <img>, crop-to-fill instead of squashing */
+  border-radius: 50%;
+  object-fit: cover;
   border: 3px solid var(--ink);
-  box-shadow: 14px 14px 0 var(--accent);   /* hard offset shadow — the editorial touch */
-  display: flex; align-items: center; justify-content: center;   /* centres the initials */
+  box-shadow: 14px 14px 0 var(--accent);
+  display: flex; align-items: center; justify-content: center;
   background: var(--surface);
   font-family: var(--font-display); font-weight: 900; font-size: 3.4rem; color: var(--accent);
-  flex-shrink: 0;                /* stops the circle squishing when space is tight */
+  flex-shrink: 0;
 }
-/* Below 760px the two hero columns stack into one, and the avatar shrinks. */
 @media (max-width: 760px) {
   .hero { grid-template-columns: 1fr; gap: 36px; padding: 56px 0; }
   .avatar { width: 140px; height: 140px; font-size: 2.4rem; box-shadow: 10px 10px 0 var(--accent); }
 }
 
-/* =========================================================================
-   EXPERIENCE & EDUCATION  (date | details rows)
-   ========================================================================= */
 .entry {
   display: grid;
-  grid-template-columns: 170px 1fr;   /* fixed date column, flexible details column */
+  grid-template-columns: 170px 1fr;
   gap: 24px;
   padding: 26px 0;
   border-top: 1px solid var(--line);
 }
-.entry:first-of-type { border-top: none; padding-top: 0; }   /* no divider above the first one */
+.entry:first-of-type { border-top: none; padding-top: 0; }
 .entry .period { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); padding-top: 4px; }
 .entry h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; }
 .entry .org { color: var(--accent-strong); font-weight: 600; margin: 2px 0 8px; }
 .entry p { color: var(--muted); font-size: 0.98rem; }
-/* On small screens, stack the date above the details. */
 @media (max-width: 620px) {
   .entry { grid-template-columns: 1fr; gap: 6px; }
   .entry .period { padding-top: 0; }
 }
 
-/* =========================================================================
-   PROJECTS — toolbar + responsive card grid
-   ========================================================================= */
 .toolbar { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; margin-bottom: 28px; }
 #search {
-  flex: 1 1 240px;               /* grows to fill space but is at least 240px wide */
+  flex: 1 1 240px;
   font-family: var(--font-body); font-size: 0.95rem;
   padding: 11px 16px;
   border: 1px solid var(--line); border-radius: 100px;
   background: var(--surface); color: var(--ink);
 }
-#search:focus { outline: none; border-color: var(--accent); }   /* accent ring when clicked into */
+#search:focus { outline: none; border-color: var(--accent); }
 
 #filters { display: flex; gap: 8px; flex-wrap: wrap; }
 .filter-btn {
@@ -202,51 +162,37 @@ header {
   cursor: pointer; transition: all 0.18s;
 }
 .filter-btn:hover { border-color: var(--ink); color: var(--ink); }
-.filter-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }   /* the JS toggles this .active class */
+.filter-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 
-/* ★ THE RESPONSIVE GRID — the most important line for the "works on every screen" requirement.
-   auto-fill = pack in as many columns as fit.
-   minmax(280px, 1fr) = each column is at least 280px, and shares leftover space equally.
-   Result: 3-up on desktop, 2-up on tablet, 1-up on phone — with NO media queries. */
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
 
 .card {
   background: var(--surface);
   border: 1px solid var(--line); border-radius: var(--radius);
   padding: 24px;
-  display: flex; flex-direction: column; gap: 12px;   /* stacks card contents vertically */
+  display: flex; flex-direction: column; gap: 12px;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 .card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 28px rgba(28, 27, 25, 0.08); }
-.card h3 { font-family: var(--font-mono); font-size: 1.05rem; font-weight: 500; word-break: break-word; }  /* long repo names wrap instead of overflowing */
-.card .desc { color: var(--muted); font-size: 0.93rem; flex-grow: 1; }   /* flex-grow pushes the link to the bottom so all cards align */
+.card h3 { font-family: var(--font-mono); font-size: 1.05rem; font-weight: 500; word-break: break-word; }
+.card .desc { color: var(--muted); font-size: 0.93rem; flex-grow: 1; }
 .card .meta { display: flex; align-items: center; gap: 16px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); flex-wrap: wrap; }
 .card .lang { display: inline-flex; align-items: center; gap: 6px; }
 .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
 .card .repo-link { align-self: flex-start; font-family: var(--font-mono); font-size: 0.82rem; font-weight: 500; color: var(--accent-strong); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
-.card .repo-link:hover { border-color: var(--accent-strong); }   /* underline appears on hover */
+.card .repo-link:hover { border-color: var(--accent-strong); }
 
 #status { font-family: var(--font-mono); font-size: 0.9rem; color: var(--muted); padding: 8px 0; }
 
-/* =========================================================================
-   FOOTER
-   ========================================================================= */
 footer { border-top: 1px solid var(--line); padding: 40px 0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); text-align: center; }
 
-/* =========================================================================
-   PAGE-LOAD REVEAL (staggered fade-in)
-   ========================================================================= */
-/* Elements start invisible and shifted down, then animate to normal.
-   The d1–d4 classes delay each one slightly, so sections appear in sequence. */
 .reveal { opacity: 0; transform: translateY(16px); animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards; }
 .d1 { animation-delay: 0.05s; }
 .d2 { animation-delay: 0.15s; }
 .d3 { animation-delay: 0.25s; }
 .d4 { animation-delay: 0.35s; }
-@keyframes rise { to { opacity: 1; transform: none; } }   /* "to" = the end state of the animation */
+@keyframes rise { to { opacity: 1; transform: none; } }
 
-/* Accessibility: some people set their OS to reduce motion (it can cause nausea).
-   This respects that by switching all the animations off. Good practice to mention in the eval. */
 @media (prefers-reduced-motion: reduce) {
   .reveal { animation: none; opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
