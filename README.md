@@ -4,7 +4,7 @@ A dynamic personal portfolio / CV that loads my projects **live from the GitHub 
 displays them as responsive cards. Built with plain HTML, CSS and JavaScript — no framework,
 no build step — and deployed on Vercel.
 
-🔗 **Live demo:** https://web-portofolio.vercel.app  <!-- replace with your real Vercel URL after deploy -->
+🔗 **Live demo:** https://web-portofolio-git-main-tudor-ns-projects.vercel.app/
 
 ## Features
 
@@ -20,10 +20,32 @@ no build step — and deployed on Vercel.
 - **Loading state** with animated skeleton cards and a spinner.
 - **Error handling** — if the API is unreachable or rate-limited, the page shows a friendly
   message instead of crashing.
-- **JSON fallback** — if fewer than 5 repositories are returned (or the API fails), a saved
-  list of projects from `projects.json` is shown.
+- **JSON fallback** — if fewer than 5 repositories are returned, or the API call fails, a
+  saved list of projects from `projects.json` is shown so the page is never empty.
 - **Fully responsive** layout (mobile, tablet, desktop) using CSS Grid and Flexbox.
 - Respects `prefers-reduced-motion` for accessibility.
+
+## How it works
+
+On page load, `app.js`:
+
+1. renders skeleton placeholder cards while the request is in flight;
+2. fetches the repository list from the public GitHub API;
+3. filters out forks and sorts the remaining repos by `updated_at` (newest first);
+4. if fewer than 5 own-repos come back, merges in the saved projects from `projects.json`
+   (de-duplicated by name);
+5. builds the language filter buttons and renders the cards.
+
+If the API call throws (no network, or rate limit reached), the saved `projects.json` list
+is shown instead; if even that is unavailable, a friendly error message is displayed.
+
+### A note on rate limiting
+
+The GitHub API is called **directly from the browser**, without an access token. Unauthenticated
+requests are limited to **60 per hour per IP**. That limit is normally fine for a portfolio page,
+and if it is ever hit the `projects.json` fallback keeps the page populated. Moving the request
+behind a token-authenticated proxy (to raise the limit and keep a token out of the frontend) is a
+possible next step but is **not implemented in this version**.
 
 ## Tech stack
 
