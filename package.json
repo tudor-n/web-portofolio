@@ -4,6 +4,6 @@
   "description": "Dynamic personal portfolio that loads projects live from the GitHub API.",
   "private": true,
   "scripts": {
-    "start": "npx serve public"
+    "start": "npx serve ."
   }
 }

@@ -38,12 +38,11 @@ no build step — and deployed on Vercel.
 
 ```
 web-portofolio/
-├── public/
-│   ├── index.html      # page markup and all sections
-│   ├── styles.css      # styling (theme variables, responsive grid, animations)
-│   ├── app.js          # GitHub fetch, rendering, search, filtering, fallback
-│   └── projects.json   # hardcoded fallback project list
-├── vercel.json         # serves the public/ folder as a static site
+├── index.html      # page markup and all sections
+├── styles.css      # styling (theme variables, responsive grid, animations)
+├── app.js          # GitHub fetch, rendering, search, filtering, fallback
+├── projects.json   # hardcoded fallback project list
+├── vercel.json     # static deploy config (clean URLs)
 └── package.json
 ```
 
@@ -55,9 +54,9 @@ This is a static site, so any static server works. The simplest option:
 npm start
 ```
 
-This runs `npx serve public` and opens the site on a local port (e.g. http://localhost:3000).
+This runs `npx serve .` and opens the site on a local port (e.g. http://localhost:3000).
 
-You can also just open `public/index.html` directly in a browser — note that some browsers
+You can also just open `index.html` directly in a browser — note that some browsers
 restrict `fetch` for `projects.json` over the `file://` protocol, so a local server is
 recommended.
 
@@ -65,13 +64,13 @@ recommended.
 
 1. Push this repository to GitHub.
 2. Go to [vercel.com](https://vercel.com) and import the repository.
-3. Keep the default settings (no build command needed — `vercel.json` serves `public/`).
+3. Keep the default settings (no build command needed — the static files live at the repo root).
 4. Deploy. Vercel gives you a live URL; paste it at the top of this README.
 
 ## Customization
 
-- Edit the profile, experience and education text in `public/index.html`.
-- Change the GitHub username in `public/app.js` (the `USERNAME` constant).
+- Edit the profile, experience and education text in `index.html`.
+- Change the GitHub username in `app.js` (the `USERNAME` constant).
 - Reskin the whole page by changing the `--accent` (and other) CSS variables at the top of
-  `public/styles.css`.
-- Update the fallback projects in `public/projects.json`.
+  `styles.css`.
+- Update the fallback projects in `projects.json`.
