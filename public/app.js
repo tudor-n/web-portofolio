@@ -1,5 +1,5 @@
 const USERNAME = "tudor-n";
-const API_ENDPOINT = "/api/repos";
+const API_ENDPOINT = `https://api.github.com/users/${USERNAME}/repos?per_page=100&sort=updated`;
 const FALLBACK_FILE = "projects.json";
 const MIN_PROJECTS = 5;
 const SKELETON_COUNT = 6;
