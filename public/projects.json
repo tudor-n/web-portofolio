@@ -1,0 +1,62 @@
+[
+  {
+    "name": "web-portofolio",
+    "description": "Dynamic personal portfolio that pulls projects live from the GitHub API, with a secure serverless proxy.",
+    "language": "JavaScript",
+    "stargazers_count": 4,
+    "forks_count": 1,
+    "html_url": "https://github.com/tudor-n/web-portofolio",
+    "fork": false,
+    "updated_at": "2026-06-01T10:00:00Z"
+  },
+  {
+    "name": "task-manager-api",
+    "description": "REST API for a task manager built with Node.js and Express, including auth and validation.",
+    "language": "JavaScript",
+    "stargazers_count": 7,
+    "forks_count": 2,
+    "html_url": "https://github.com/tudor-n/task-manager-api",
+    "fork": false,
+    "updated_at": "2026-04-18T10:00:00Z"
+  },
+  {
+    "name": "weather-dashboard",
+    "description": "Responsive weather dashboard consuming a public weather API with charts and search history.",
+    "language": "TypeScript",
+    "stargazers_count": 5,
+    "forks_count": 0,
+    "html_url": "https://github.com/tudor-n/weather-dashboard",
+    "fork": false,
+    "updated_at": "2026-03-09T10:00:00Z"
+  },
+  {
+    "name": "algorithms-playground",
+    "description": "A collection of classic data structures and algorithms with tests and complexity notes.",
+    "language": "Python",
+    "stargazers_count": 9,
+    "forks_count": 3,
+    "html_url": "https://github.com/tudor-n/algorithms-playground",
+    "fork": false,
+    "updated_at": "2026-02-22T10:00:00Z"
+  },
+  {
+    "name": "snake-game",
+    "description": "Classic snake game built with the HTML5 canvas and vanilla JavaScript.",
+    "language": "JavaScript",
+    "stargazers_count": 3,
+    "forks_count": 1,
+    "html_url": "https://github.com/tudor-n/snake-game",
+    "fork": false,
+    "updated_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "name": "notes-cli",
+    "description": "A small command-line note-taking tool with tagging and full-text search.",
+    "language": "Go",
+    "stargazers_count": 6,
+    "forks_count": 0,
+    "html_url": "https://github.com/tudor-n/notes-cli",
+    "fork": false,
+    "updated_at": "2025-12-02T10:00:00Z"
+  }
+]

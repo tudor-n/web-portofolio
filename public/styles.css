@@ -251,3 +251,29 @@ footer { border-top: 1px solid var(--line); padding: 40px 0; font-family: var(--
   .reveal { animation: none; opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
 }
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  vertical-align: -3px;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.card.skeleton { pointer-events: none; gap: 14px; }
+.card.skeleton .bar {
+  height: 12px;
+  border-radius: 6px;
+  background: var(--line);
+  animation: pulse 1.1s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner, .card.skeleton .bar { animation: none; }
+}
